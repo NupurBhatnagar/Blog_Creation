@@ -1,0 +1,14 @@
+{% extends "blog/master.html" %}
+
+{% block title %}Our Blog{% endblock %}
+
+{% block content %}
+<h1 class="page-header"><font color="#154360">Recent Blogs</font></h1>
+    {% for post in posts %}
+       <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+        <p class="small" style="color: #777777">Published {{ post.publish }} by {{ post.author }}</p>
+        <p>{{ post.body|truncatewords:25|linebreaks }}</p>
+    {% endfor %}
+
+    {% include "pagination.html" with page=posts %}
+{% endblock %}
